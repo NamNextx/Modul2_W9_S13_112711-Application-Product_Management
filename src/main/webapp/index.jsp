@@ -11,6 +11,10 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <h1>Do you want show list list product</h1>
+    <form method="post" action="/products">
+      <input type="submit" value="Show List product">
+    </form>
+
   </body>
 </html>
