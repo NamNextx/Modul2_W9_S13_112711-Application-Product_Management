@@ -32,6 +32,7 @@
             <th class="col-2"> Product price</th>
             <th class="col-2"> Product Description</th>
             <th class="col-2">Supplier</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -43,6 +44,8 @@
             <td>${product.getProduct_Price()}</td>
             <td>${product.getProduct_Description()}</td>
             <td>${product.getProduct_Supplier()}</td>
+            <td><a class="btn btn-success" href="/products?action=edit&id=${product.getId()}">Edit</a></td>
+            <td><a class="btn btn-danger" href="products?id=">Delete</a></td>
 
         </tr>
         </c:forEach>

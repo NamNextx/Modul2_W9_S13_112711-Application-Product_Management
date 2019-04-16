@@ -2,35 +2,35 @@
   Created by IntelliJ IDEA.
   User: Nam_Phuong
   Date: 2019-04-16
-  Time: 09:37
+  Time: 11:33
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <!-- Optional theme -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 <html>
 <head>
-    <title>Create product</title>
+    <title>Edit Product</title>
 </head>
 <body>
-<h1>Create Product</h1>
+<h1> Edit product</h1>
 <p>
-    <c:if test='${requestScope["message"] != null}'>
-    <div class="alert alert-success">
+    <c:if test="${requestScope['message'] !=null}">
+<div class="alert alert-success">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <strong>${requestScope['message']}</strong>
-    </div>
+</div>
 </c:if>
 </p>
 
 <form method="post">
     <fieldset>
-        <legend>Form add product</legend>
+        <legend>Form edit product</legend>
         <table class="table">
             <thead>
             <tr class="d-flex">
@@ -78,8 +78,6 @@
     </fieldset>
 
 </form>
-<p>
-    <a href="/products">Back to list</a>
-</p>
+
 </body>
 </html>

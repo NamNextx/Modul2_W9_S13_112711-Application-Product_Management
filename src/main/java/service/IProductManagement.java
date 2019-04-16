@@ -12,4 +12,5 @@ public interface IProductManagement {
     void remove(int id);
 
 
+    Product findByID(int id);
 }

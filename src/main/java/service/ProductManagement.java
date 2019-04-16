@@ -21,7 +21,7 @@ public class ProductManagement implements IProductManagement {
 
     @Override
     public void save(Product product) {
-
+            productMap.put(product.getId(),product);
     }
 
     @Override
@@ -37,5 +37,10 @@ public class ProductManagement implements IProductManagement {
     @Override
     public void remove(int id) {
 
+    }
+
+    @Override
+    public Product findByID(int id) {
+            return productMap.get(id);
     }
 }
