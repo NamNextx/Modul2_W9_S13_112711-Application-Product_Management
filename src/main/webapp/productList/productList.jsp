@@ -19,20 +19,25 @@
     <title>Product List</title>
 </head>
 <body>
-
+    <h1>Product List</h1>
+    <p>
+        <a href="/products?action=create">Create new Product</a>
+    </p>
     <table class="table">
         <thead>
         <tr class="d-flex">
+            <th class="col-1"></th>
             <th class="col-2">ID</th>
             <th class="col-3"> Product Name</th>
             <th class="col-2"> Product price</th>
-            <th class="col-3"> Product Description</th>
+            <th class="col-2"> Product Description</th>
             <th class="col-2">Supplier</th>
         </tr>
         </thead>
         <tbody>
        <c:forEach items='${requestScope["products"]}' var="product">
         <tr>
+            <th></th>
             <td>${product.getId()}</td>
             <td>${product.getProduct_Name()}</td>
             <td>${product.getProduct_Price()}</td>
