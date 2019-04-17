@@ -28,6 +28,10 @@
 </c:if>
 </p>
 
+<p>
+    <a href="/products">Back to product list</a>
+</p>
+
 <form method="post">
     <fieldset>
         <legend>Form edit product</legend>
@@ -36,7 +40,8 @@
             <tr class="d-flex">
                 <th class="col-2"></th>
                 <th class="col-3">Description</th>
-                <th class="col-7">Value</th>
+                <th class="col-3">Old data</th>
+                <th class="col-4">Data new</th>
             </tr>
             </thead>
 
@@ -44,35 +49,40 @@
             <tr>
                 <td></td>
                 <td>ID:</td>
+                <td> ${requestScope["product"].getId()}</td>
                 <td><input type="number" name="id" id="id" required></td>
             </tr>
             <tr>
                 <td></td>
                 <td>Product Name</td>
+                <td> ${requestScope["product"].getProduct_Name()}</td>
                 <td><input type="text" name="name" id="name" required></td>
             </tr>
 
             <tr>
                 <td></td>
                 <td>Product Price</td>
+          <td> ${requestScope["product"].getProduct_Price()}</td>
                 <td><input type="text" name="price" id="price" required></td>
             </tr>
 
             <tr>
                 <td></td>
                 <td>Description</td>
+                <td> ${requestScope["product"].getProduct_Description()}</td>
                 <td><input type="text" name="description" id="description" required></td>
             </tr>
 
             <tr>
                 <td></td>
                 <td>Supplier</td>
+                <td> ${requestScope["product"].getProduct_Supplier()}</td>
                 <td><input type="text" name="supplier" id="supplier" required></td>
             </tr>
 
             <tr>
                 <td></td>
-                <td><input type="submit" value="Create Product"></td>
+                <td><input type="submit" value="Edit product"></td>
             </tr>
         </table>
     </fieldset>

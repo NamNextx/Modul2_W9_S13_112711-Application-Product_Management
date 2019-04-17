@@ -28,6 +28,10 @@ public class ProductManagementServlet extends javax.servlet.http.HttpServlet {
                 createProduct(request,response);
                 break;
             }
+            case "edit":{
+                editProduct(request,response);
+                break;
+            }
 
             default: {
                 showAllProduct(request, response);
@@ -35,7 +39,6 @@ public class ProductManagementServlet extends javax.servlet.http.HttpServlet {
             }
         }
     }
-
 
 
 
@@ -56,11 +59,55 @@ public class ProductManagementServlet extends javax.servlet.http.HttpServlet {
                 showEditProduct(request,response);
                 break;
             }
+            case "delete":{
+                showDeleteForm(request,response);
+            }
             default: {
                 showAllProduct(request, response);
                 break;
             }
         }
+    }
+
+    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
+        int id=Integer.parseInt(request.getParameter("id"));
+        Product product=
+    }
+
+    private void editProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id=Integer.parseInt(request.getParameter("id"));
+        String name=request.getParameter("name");
+        int price=Integer.parseInt(request.getParameter("price"));
+        String descrip=request.getParameter("description");
+        String supplier=request.getParameter("supplier");
+
+        Product product=productService.findByID(id);
+        RequestDispatcher requestDispatcher;
+
+        if (product==null){
+            request.setAttribute("message","Done have that id");
+            requestDispatcher=request.getRequestDispatcher("error-404.jsp");
+        }
+        else {
+           product.setProduct_Name(name);
+           product.setProduct_Price(price);
+           product.setProduct_Description(descrip);
+           product.setProduct_Supplier(supplier);
+
+           productService.save(product);
+
+            request.setAttribute("message","Done");
+           request.setAttribute("product",product);
+           requestDispatcher=request.getRequestDispatcher("productList/edit.jsp");
+        }
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void showEditProduct(HttpServletRequest request, HttpServletResponse response) {
