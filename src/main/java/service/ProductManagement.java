@@ -36,7 +36,7 @@ public class ProductManagement implements IProductManagement {
 
     @Override
     public void remove(int id) {
-
+            productMap.remove(id);
     }
 
     @Override

@@ -45,7 +45,7 @@
             <td>${product.getProduct_Description()}</td>
             <td>${product.getProduct_Supplier()}</td>
             <td><a class="btn btn-success" href="/products?action=edit&id=${product.getId()}">Edit</a></td>
-            <td><a class="btn btn-danger" href="products?id=">Delete</a></td>
+            <td><a class="btn btn-danger" href="products?action=delete&id=${product.getId()}">Delete</a></td>
 
         </tr>
         </c:forEach>

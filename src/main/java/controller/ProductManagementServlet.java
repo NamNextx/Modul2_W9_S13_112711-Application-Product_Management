@@ -5,13 +5,13 @@ import service.ProductManagement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductManagement", urlPatterns = "/products")
+//@WebServlet(name = "ProductManagement", urlPatterns = "/products")
 public class ProductManagementServlet extends javax.servlet.http.HttpServlet {
     ProductManagement productService = new ProductManagement();
 
@@ -32,6 +32,11 @@ public class ProductManagementServlet extends javax.servlet.http.HttpServlet {
                 editProduct(request,response);
                 break;
             }
+            case "delete":
+            {
+                deleteProduct(request,response);
+                break;
+            }
 
             default: {
                 showAllProduct(request, response);
@@ -39,6 +44,7 @@ public class ProductManagementServlet extends javax.servlet.http.HttpServlet {
             }
         }
     }
+
 
 
 
@@ -69,9 +75,48 @@ public class ProductManagementServlet extends javax.servlet.http.HttpServlet {
         }
     }
 
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id=Integer.parseInt(request.getParameter("id"));
+
+        Product product=productService.findByID(id);
+
+        RequestDispatcher requestDispatcher;
+        if (product == null) {
+            requestDispatcher=request.getRequestDispatcher("error-404.jsp");
+        }
+        else {
+            this.productService.remove(id);
+        }
+        try{ productService.remove(id);
+            response.sendRedirect("/products");
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
         int id=Integer.parseInt(request.getParameter("id"));
-        Product product=
+        Product product=productService.findByID(id);
+        RequestDispatcher requestDispatcher;
+
+        if (product==null){
+                requestDispatcher=request.getRequestDispatcher("error-404.jsp");
+        }
+        else {
+            request.setAttribute("product",product);
+
+
+            requestDispatcher=request.getRequestDispatcher("productList/deleteForm.jsp");
+        }
+        try{
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) {
